@@ -4,18 +4,16 @@
 
 # Contents
 
-1. [What is `this`](concept/this.md)
+1. [What is `this?`](concept/this.md)
 
-   > this의 의미에 대해서 알아보자 😀
+2. class syntax : beyond ES2020
 
-2. class
+3. `new` operator & `constructor`
 
-3. new operator & constructor
+4. `prototype chain`
 
-4. prototype & prototype chain
+5. best practice using `prototype`
 
-5. prototype의 실제 활용
+6. `instance of`
 
-6. instanceof
-
-7. Object.create and Object.assign
+7. `Object.create()` and `Object.assign()`
