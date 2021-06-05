@@ -4,9 +4,9 @@
 
 # Contents
 
-1. [What is `this?`](concept/this.md)
+1. [What is `this?`](concepts/this.md)
 
-2. class syntax : beyond ES2020
+2. [`class` syntax : beyond ES2020](concepts/class.md)
 
 3. `new` operator & `constructor`
 

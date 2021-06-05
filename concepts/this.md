@@ -302,6 +302,10 @@ console.log(darkknight); //Movie {title: "darkknight", released: 2008}
 
 <br />
 
+## 추가1] 화살표 함수에서의 this
+
+## 추가2] 이벤트 리스너에서의 this
+
 # More Practice
 
 [Quiz를 통해서 알아보자 💡](this_quiz.md)
