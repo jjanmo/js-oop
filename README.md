@@ -6,14 +6,14 @@
 
 1. [What is `this?`](concepts/this.md)
 
-2. [`class` syntax : beyond ES2020](concepts/class.md)
+2. [`new` operator & `constructor & prototype`](concepts/new_constructor_prototype.md)
 
-3. `new` operator & `constructor`
+3. `prototype chain`
 
-4. `prototype chain`
+4. best practice using `prototype`
 
-5. best practice using `prototype`
+5. `instance of`
 
-6. `instance of`
+6. `Object.create()` and `Object.assign()`
 
-7. `Object.create()` and `Object.assign()`
+7. [`class` syntax : beyond ES2020](concepts/class.md)
