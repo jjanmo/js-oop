@@ -33,16 +33,117 @@ console.log(newUser2); // 2
 
 ## New Operator 작동방식
 
+```javascript
+function Calculator() {
+  this.number1 = 0;
+  this.number2 = 0;
+
+  this.read = function () {
+    const [number1, number2] = prompt().split(' ');
+    this.number1 = parseInt(number1, 10);
+    this.number2 = parseInt(number2, 10);
+  };
+
+  this.sum = function () {
+    return this.number1 + this.number2;
+  };
+}
+
+const calculator = new Calculator();
+```
+
+> 브라우저에서 작동하는 간단한 덧셈 계산기이다.
+
+<br />
+
 `new <함수>`를 만나는 순간,
 
-1. `빈 객체 { }`가 생성된다.
-2. `this`에 (위에서)생성된 빈 객체를 할당한다.
+1. `빈 객체 { }` 가 생성된다.
+2. `this`에 (위에서)생성된 빈 객체를 연결(할당)한다.
 3. 함수의 본문으로 들어가서 해당 코드를 실행한다. 여기서 해당 객체(this)의 프로퍼티가 생성된다. this.<프로퍼티> 형식으로 추가된다.
-4. 생성자 함수의 prototype 객체가 바인딩된 `__proto__`라는 프로퍼티가 해당 객체(this)에 추가한다.
+4. **생성자 함수의 프로토타입(prototype) 객체**가 바인딩된 `__proto__`라는 프로퍼티가 해당 객체(this)에 추가한다.
 5. `this`를 반환한다.
+
+여기서 몇가지 이해가 안되는 부분들이 있을 것이다. 특히 `프로토타입 객체??`, `__proto__??` 이러한 것이 정확히 무엇을 의미하는지 알 수 없다. 그럼 위의 개념에 대해서 알아보자.
 
 ### 참고
 
-Scope-safe constructors
+Q1. new 연산자를 사용하고도 명시적으로 this에 다른 값을 할당한다면 어떻게 될까?
 
-return 방식의 변경
+> 생성자 함수(new 사용시)는 명시적으로 반환값을 쓰지않아도 자동으로 this를 반환한다. 이 this에는 새로운 객체가 가져야할 프로퍼티를 모두 담은 것이다. 그런데 위의 의문처럼 새로운, 다른 객체를 반환한다면 생성자 함수에 의해 만들어진 인스턴스가 아니라 새로운, 다른 객체를 반환한다. 또 다른 점은 `__proto__`에 연결된 객체가 다르다는 것이다. 이 부분은 앞으로 알아갈 것이기 때문에 결과값이 어떻게 다른지 코드와 이미지로 보고만 가자.
+
+> 반환값에 새로운 객체가 아닌 원시타입의 값을 반환한다면(return 'jjanmo' 처럼) 그 리턴문은 무시되고 기존의 this를 반환한다.
+
+```javascript
+function A() {
+  this.number = 100;
+}
+
+const foo = new A();
+console.log(foo); // 1
+
+function B() {
+  this.number = 100;
+
+  return {
+    name: 'jjanmo',
+  };
+}
+
+const bar = new B();
+console.log(bar); // 2
+```
+
+![return_this](../screenshots/return_this.png)
+
+Q2. 어떤 경우 new를 붙이지 않아도 생성자 함수처럼 작동하는 경우가 있던데 그건 무엇때문에 그럴까?
+
+```javascript
+// 가장 보편적인 리터럴 방식의 배열 생성
+var arr1 = [1, 2, 3];
+
+// 생성자함수를 통한 배열 생성
+var arr2 = new Array(1, 2, 3);
+
+// ??
+var arr3 = Array(1, 2, 3);
+
+console.log(arr1);
+console.log(arr2);
+console.log(arr3);
+```
+
+![array](../screenshots/array.png)
+
+위 이미지를 보면 3개 모두 같은 결과값을 갖는다. 우리가 알던 지식을 바탕으로 생각하면, new를 사용하지 않은 생성자 함수는 일반 함수의 호출과 같은 것으로 작동하는 것으로 알고 있는데 말이다. 이 이유는 자바스크립트는 빌트인 객체의 경우, new를 사용하지 않더라도 의도한바대로 새로운 객체(인스턴스)를 생성할 수 있도록 내부적으로 구현되어 있기 때문이다. 이러한 것을 `Scope-safe constructors`라고 부른다고 한다. (해당 빌트인 객체는 예를 들어 Object, Regex(정규표현식), Array 등이 있다.) 코드로는 어떻게 구현되어 있을지 살펴보자.
+
+```javascript
+function Fn(argument) {
+  if (!(this instanceof Fn)) {
+    return new Fn(argument);
+  }
+}
+```
+
+> new 연산자로 생성자 함수가 호출되면 this가 생성자 함수에 의해 생성된 객체(인스턴스)에 할당된다. 하지만 new가 없다면 일반함수 호출로서 this는 window를 의미하기 때문에 해당 if문에 부합하게 되어 `new Fn()`이 작동하게 되는 것이다.
+
+> `instanceof`를 간단하게 이해하면 해당 객체가 생성자 함수에 의해서 만들어진 객체(인스턴스)인지 여부를 알려준다라고 생각할 수 있다. 물론 이 말도 맞지만(이렇게 따지면 다른 경우가 생긴다.) 엄밀하게 말하면 `생성자의 prototype 속성이 객체의 프로토타입 체인 어딘가 존재하는지 판별합니다` 라고 [MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/instanceof)에 적혀있다. 프로토타입에 대해서 알게 되면 이 말을 좀 더 명확하게 이해할 수 있을 것이다.
+
+<br />
+
+## Prototype
+
+> 원형, 원초적인 형태, 공학에서는 초기모델,
+
+모든 함수는 생성될 때, 자신의 원형, 자신의 모체를 가지고 태어난다. 코드적(?)으로 설명하면 모든 함수는 **`prototype` 이라는 프로퍼티**를 갖고 있다. 말로 하면 이제 브라우저에서 나타나는 함수에 대해서 알아보자.
+
+```javascript
+function fn() {
+    this.name = 'jjanmo';
+    this.log = function() {
+        console.log(`My name is ${this.name}`;
+    }
+}
+
+console.dir(fn);
+```
