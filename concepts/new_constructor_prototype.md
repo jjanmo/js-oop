@@ -133,17 +133,17 @@ function Fn(argument) {
 
 ## Prototype
 
-> 원형, 원초적인 형태, 공학에서는 초기모델,
+> 원형, 원초적인 형태, 공학에서는 초기모델
 
 모든 함수는 생성될 때, 자신의 원형, 자신의 모체를 가지고 태어난다. 코드적(?)으로 설명하면 모든 함수는 **`prototype` 이라는 프로퍼티**를 갖고 있다. 말로 하면 이제 브라우저에서 나타나는 함수에 대해서 알아보자.
 
 ```javascript
-function fn() {
-    this.name = 'jjanmo';
+function Human(name) {
+    this.name = name;
     this.log = function() {
         console.log(`My name is ${this.name}`;
     }
 }
 
-console.dir(fn);
+console.dir(Human);
 ```
