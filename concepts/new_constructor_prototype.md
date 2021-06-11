@@ -135,15 +135,37 @@ function Fn(argument) {
 
 > 원형, 원초적인 형태, 공학에서는 초기모델
 
-모든 함수는 생성될 때, 자신의 원형, 자신의 모체를 가지고 태어난다. 코드적(?)으로 설명하면 모든 함수는 **`prototype` 이라는 프로퍼티**를 갖고 있다. 말로 하면 이제 브라우저에서 나타나는 함수에 대해서 알아보자.
+> 프로토타입에 대해서 알기 전에 위에서 언급했던 두가지를 기억해보자. **첫번째**는 `모든 객체는 함수를 통해서 만들어진다`. **두번째**는 그렇게 만들어진 `객체 안에는 __proto__라는 프로퍼티가 들어있다`.(생성자 함수에 의해서 객체가 생성될 때의 과정을 떠올려보자.)
+
+모든 함수는 생성될 때, 자신의 원형, 자신의 모체를 가지고 태어난다. 코드적(?)으로 설명하면 모든 함수는 **`프로토타입(prototype)` 이라는 프로퍼티**를 갖고 있다. 프로토타입이 실제로 어떻게 구현되어 있는지에 대해서 코드와 브라우저에서 출력되는 결과값을 통해서 알아보자.
 
 ```javascript
 function Human(name) {
-    this.name = name;
-    this.log = function() {
-        console.log(`My name is ${this.name}`;
-    }
+  this.name = name;
 }
 
-console.dir(Human);
+console.dir(Human); // 1)
+
+const human1 = new Human('jjanmo');
+console.dir(human1); // 2)
 ```
+
+<br />
+
+![prototype1](../screenshots/constructor_prototype.png)
+
+위 이미지는 1번 코드의 결과값으로 Human 생성자 함수에 대해서 살펴볼 수 있다. `f Human(name)` 을 열어보면 그 밑에 있는 모든 것은 해당 함수의 프로퍼티이다. 그 중에 `prototype` 이라는 프로퍼티(파란 박스)와 `__proto__` 프로퍼티(빨간 박스)를 볼 수 있다. 또한 `prototype` 안에는 다시 `constructor` 라는 프로퍼티가 있다. 이 각각은 무슨 관계를 가지고 있길래 Human 생성자 함수의 프로퍼티로서 존재하는 것일까?
+
+// 다이어그램 추가
+
+![prototype2](../screenshots/instance_prototype.png)
+
+위 이미지는 Human 생성자 함수로부터 생성된 인스턴스(객체)에 대한 출력값이다. 이 객체의 프로퍼티를 살펴보면 name 외에도 `__proto__` 프로퍼티가 있다. 그런데 자세히 살펴보면 이 프로퍼티는 어디서 본 것 같지 않은가? 이것은 `Human 생성자 함수의 prototype 프로퍼티`를 참조한다. 잉?? 이것은 무슨말이지??
+
+다시 한 번 `__proto__`에 대해서 정리해보자. `__proto__`는 객체가 생성될 때, 모두 갖게 되는 프로퍼티이다. 이 프로퍼티는 그 객체를 만든 생성자 함수의 prototype 프로퍼티(즉, 프로토타입 객체)를 참조한다. 그래서 이를 프로토타입 링크(Prototype Link)라고 부르기도 한다. 또한 `__proto__`를 `[[prototype]]` 표현하기도 한다. 참고로 `__proto__`를 `던더프로토`라고도 부른다. 지금까지 말로 설명한 것을 다시 한 번 다이어그램으로 정리해보자.
+
+// 다이어그램 정리
+
+<br />
+
+## Prototype Chain
