@@ -8,7 +8,7 @@
 
 2. [`new` operator & `constructor & prototype`](concepts/new_constructor_prototype.md)
 
-3. `prototype chain`
+3. `Prototype Inheritance`
 
 4. best practice using `prototype`
 
