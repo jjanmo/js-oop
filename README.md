@@ -6,7 +6,7 @@
 
 1. [What is `this?`](concepts/this.md)
 
-2. [`new` operator & `constructor & prototype`](concepts/new_constructor_prototype.md)
+2. [`new` operator & `constructor` & `prototype`](concepts/new_constructor_prototype.md)
 
 3. `Prototype Inheritance`
 
