@@ -34,3 +34,8 @@ Function.prototype.defer = function (duration) {
 };
 
 f.defer(1000)(1, 2); // 1초 후 3을 출력
+
+// 참고자료
+// https://developer.mozilla.org/ko/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout#this_%EB%AC%B8%EC%A0%9C
+
+//bind를 이용한 방법은?? 
