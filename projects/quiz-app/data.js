@@ -1,4 +1,4 @@
-const data = [
+export const data = [
   {
     question: `function bark() {
       console.log("Woof!");
@@ -6,9 +6,9 @@ const data = [
     bark.animal = "dog";
     `,
     options: [
-      '별일 없어요, 이건 완전히 괜찮아요!',
-      'SyntaxError 이 방법으로 함수에 속성을 추가할 수 없어요.',
-      '"Woof"이 출력돼요.',
+      '별일 없어요, 완전히 괜찮아요!',
+      'SyntaxError, 함수에 속성을 추가할 수 없어요.',
+      '"Woof"이 출력됩니다.',
       'ReferenceError',
     ],
     answer: 'A',
