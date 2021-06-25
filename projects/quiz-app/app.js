@@ -20,6 +20,7 @@ import { data } from './data.js';
     $question.textContent = data.question;
 
     const $options = document.createElement('div');
+    $options.classList.add('options');
     data.options.forEach((option, index) => {
       const $option = document.createElement('button');
       $option.classList.add('option');
