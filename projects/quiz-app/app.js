@@ -9,8 +9,13 @@ import { data } from './data.js';
   const $options = document.querySelector('.options');
   let order = 0;
 
-  function handleClick(e) {
-    console.log(e.target);
+  function checkAnswer(clickedTarget, rightAnswer) {
+    const clickedAnswer = clickedTarget.textContent.substring(0, 1);
+    if (clickedAnswer === rightAnswer) {
+      alert('맞았습니다.');
+    } else {
+      alert('틀렸습니다.');
+    }
   }
 
   function makeQuiz(data) {
@@ -30,6 +35,17 @@ import { data } from './data.js';
 
     $contents.appendChild($question);
     $contents.appendChild($options);
+  }
+
+  function handleClick(e) {
+    const target = e.target;
+    const answer = data[0].answer;
+    console.log(target);
+    if (target.className === 'option') {
+      checkAnswer(target, answer);
+    } else if (target.className === 'arrow') {
+      // previous / next
+    }
   }
 
   function init() {

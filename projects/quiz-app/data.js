@@ -11,7 +11,7 @@ export const data = [
       '"Woof"이 출력됩니다.',
       'ReferenceError',
     ],
-    answer: 'A',
+    answer: '1',
   },
   {
     question: `const foo = () => console.log("First");
@@ -23,7 +23,7 @@ export const data = [
     baz();
     `,
     options: ['First Second Third', 'First Third Second', 'Second First Third', 'Second Third First'],
-    answer: 'B',
+    answer: '2',
   },
   {
     question: `let person = { name: "Lydia" };
@@ -33,7 +33,7 @@ export const data = [
     console.log(members);
     `,
     options: ['null', '[null]', '[{}]', '[{ name: "Lydia" }]'],
-    answer: 'D',
+    answer: '4',
   },
   {
     question: `const { name: myName } = { name: "Lydia" };
@@ -41,6 +41,6 @@ export const data = [
     console.log(name);
     `,
     options: ['"Lydia"', '"myName"', 'undefined', 'ReferenceError'],
-    answer: 'D',
+    answer: '4',
   },
 ];
