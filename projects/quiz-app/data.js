@@ -1,11 +1,6 @@
 export const data = [
   {
-    question: `
-      function bark() {
-        console.log("Woof!");
-      }
-      bark.animal = "dog";
-    `,
+    question: 'https://gist.github.com/jjanmo/859a3990d10a14079ed61f319aada2ff.js',
     options: [
       '별일 없어요, 완전히 괜찮아요!',
       'SyntaxError, 함수에 속성을 추가할 수 없어요.',
@@ -15,34 +10,18 @@ export const data = [
     answer: '1',
   },
   {
-    question: `
-      const foo = () => console.log("First");
-      const bar = () => setTimeout(() => console.log("Second"));
-      const baz = () => console.log("Third");
-
-      bar();
-      foo();
-      baz();
-    `,
+    question: 'https://gist.github.com/jjanmo/7734b28a9e3fc9986292717c2f8206e5.js',
     options: ['First Second Third', 'First Third Second', 'Second First Third', 'Second Third First'],
     answer: '2',
   },
   {
-    question: `
-      let person = { name: "Lydia" };
-      const members = [person];
-      person = null;
-
-      console.log(members);
-    `,
-    options: ['null', '[null]', '[{}]', '[{ name: "Lydia" }]'],
+    question: 'https://gist.github.com/jjanmo/283ae40e041203006629ed6078636d4a.js',
+    options: ['null', '[null]', '[{}]', '[{ name: "JJanmo" }]'],
     answer: '4',
   },
   {
-    question: `const { name: myName } = { name: "Lydia" };
-     console.log(name);
-    `,
-    options: ['"Lydia"', '"myName"', 'undefined', 'ReferenceError'],
+    question: 'https://gist.github.com/jjanmo/0bd87261959d82042a60ce61590e55cb.js',
+    options: ['"JJanmo"', '"myName"', 'undefined', 'ReferenceError'],
     answer: '4',
   },
 ];

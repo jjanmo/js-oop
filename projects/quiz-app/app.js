@@ -11,9 +11,14 @@ import { data } from './data.js';
   function renderQuiz(data) {
     $contents.innerHTML = '';
 
-    const $question = document.createElement('div');
-    $question.classList.add('question');
-    $question.textContent = data.question.trim();
+    const $iframe = document.createElement('iframe');
+    const src = `data:text/html;charset=utf-8,
+    <head><base target='_blank' /></head>
+    <body><script src='${data.question}'></script>
+    </body>`;
+    $iframe.src = src;
+    $iframe.scrolling = 'auto';
+    $contents.appendChild($iframe);
 
     const $options = document.createElement('div');
     $options.classList.add('options');
@@ -24,7 +29,6 @@ import { data } from './data.js';
       $options.appendChild($option);
     });
 
-    $contents.appendChild($question);
     $contents.appendChild($options);
   }
 

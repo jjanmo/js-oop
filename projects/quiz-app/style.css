@@ -7,7 +7,7 @@
 }
 .app {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -35,25 +35,10 @@
   justify-content: center;
   align-items: center;
 }
-.question {
-  background-color: #95afc0;
-  color: #eee;
-  font-size: 1.2rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  padding: 0.5rem 5rem;
-  white-space: pre;
-  border-radius: 10px;
-  width: 80%;
-  height: 200px;
-  display: flex;
-  align-items: center;
-}
 button {
   all: unset;
   cursor: pointer;
 }
-
 .options {
   width: 80%;
   display: flex;
@@ -62,8 +47,9 @@ button {
   align-items: center;
 }
 .option {
-  width: 48%;
-  padding: 0.8rem 1.5rem;
+  width: 350px;
+  height: 25px;
+  padding: 10px 20px;
   border-radius: 30px;
   margin: 8px 0 8px;
   background-color: #30336b;
@@ -95,4 +81,10 @@ button {
 }
 img {
   width: 90%;
+}
+iframe {
+  width: 600px;
+  height: 200px;
+  border: none;
+  margin-bottom: 10px;
 }
