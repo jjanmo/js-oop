@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   width: 50vw;
-  height: 75vh;
+  height: 80vh;
   border-radius: 10px;
   background-color: #dff9fb;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
@@ -44,8 +44,8 @@
   padding: 0.5rem 5rem;
   white-space: pre;
   border-radius: 10px;
-  /* width: 50%; */
-  height: 150px;
+  width: 80%;
+  height: 200px;
   display: flex;
   align-items: center;
 }
@@ -87,7 +87,6 @@ button {
   width: 30px;
   right: 30px;
   border-radius: 50%;
-  margin-top: 0.5rem;
   padding: 1rem;
 }
 .left:hover,
@@ -95,5 +94,5 @@ button {
   background-color: #eee;
 }
 img {
-  width: 100%;
+  width: 90%;
 }

@@ -1,28 +1,19 @@
 import { data } from './data.js';
+
 (function () {
-  // 1) 함수형으로 만들기
+  // 1) 함수형으로 만들기 ✅
   // 2) 객체지향으로 변경
 
   const $app = document.querySelector('.app');
   const $contents = document.querySelector('.contents');
-  const $question = document.querySelector('.question');
-  const $options = document.querySelector('.options');
-  let order = 0;
+  let order = 1;
 
-  function checkAnswer(clickedTarget, rightAnswer) {
-    const clickedAnswer = clickedTarget.textContent.substring(0, 1);
-    if (clickedAnswer === rightAnswer) {
-      alert('맞았습니다.');
-    } else {
-      alert('틀렸습니다.');
-    }
-  }
-
-  function makeQuiz(data) {
+  function renderQuiz(data) {
     $contents.innerHTML = '';
+
     const $question = document.createElement('div');
     $question.classList.add('question');
-    $question.textContent = data.question;
+    $question.textContent = data.question.trim();
 
     const $options = document.createElement('div');
     $options.classList.add('options');
@@ -37,20 +28,51 @@ import { data } from './data.js';
     $contents.appendChild($options);
   }
 
+  function renderOrder() {
+    const $order = document.querySelector('.order');
+    $order.textContent = `${order} / ${data.length}`;
+  }
+
+  function checkAnswer(target) {
+    const clickedAnswer = target.textContent.substring(0, 1);
+    const rightAnswer = data[order - 1].answer;
+    if (clickedAnswer === rightAnswer) {
+      alert('맞았습니다.');
+    } else {
+      alert('틀렸습니다.');
+    }
+  }
+
+  function moveQuiz(target) {
+    const flag = target.src || target.firstElementChild.src;
+    const direction = flag.includes('right') ? 'right' : 'left';
+    if (direction === 'right') {
+      if (order !== data.length) {
+        order++;
+        renderQuiz(data[order - 1]);
+      }
+    } else {
+      if (order !== 1) {
+        order--;
+        renderQuiz(data[order - 1]);
+      }
+    }
+    renderOrder();
+  }
+
   function handleClick(e) {
     const target = e.target;
-    const answer = data[0].answer;
-    console.log(target);
     if (target.className === 'option') {
-      checkAnswer(target, answer);
-    } else if (target.className === 'arrow') {
-      // previous / next
+      checkAnswer(target);
+    } else if (target.className.includes('arrow')) {
+      moveQuiz(target);
     }
   }
 
   function init() {
     $app.addEventListener('click', handleClick);
-    makeQuiz(data[0]);
+    renderQuiz(data[order - 1]);
+    renderOrder();
   }
 
   init();
