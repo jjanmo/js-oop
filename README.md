@@ -8,7 +8,9 @@
 
 - [What is `this?`](concepts/this.md)
 
-- [`new` operator & `constructor` & `prototype`](concepts/new_constructor_prototype.md)
+- [What is `prototype?`](concepts/new_constructor_prototype.md)
+
+  > constructor와 new operator의 작동방식을 통해서 prototype과 prototype chain의 개념을 알아보고 이를 바탕으로 instanceof operator가 어떻게 작동하는지 알아보자.
 
 - `Prototype Inheritance`
 
