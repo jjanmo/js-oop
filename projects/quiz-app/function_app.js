@@ -1,9 +1,6 @@
 import { data } from './data.js';
 
 (function () {
-  // 1) 함수형으로 만들기 ✅
-  // 2) 객체지향으로 변경
-
   const $app = document.querySelector('.app');
   const $contents = document.querySelector('.contents');
   let order = 1;
